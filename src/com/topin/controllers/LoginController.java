@@ -6,6 +6,8 @@ import com.topin.helpers.Pair;
 import com.topin.models.User;
 import com.topin.services.StorageService;
 import com.topin.views.LoginView;
+import menusystem.MenuController;
+import menusystem.menus.AdminMenu;
 import org.json.simple.JSONObject;
 
 public class LoginController {
@@ -36,8 +38,25 @@ public class LoginController {
             StorageService.getInstance().setCurrentUser(user);
             LoginController loginController = new LoginController(user, new LoginView(user));
             loginController.view.loginSuccess();
+            do {
+                switch (user.getRole()){
+                    case "admin":
+                        MenuController.create(new AdminMenu()).execute();
+                        break;
+                    case "user":
+                        break;
+                    case "worker":
+                        break;
+                }
+            }while (StorageService.getInstance().isLogined());
         } else {
             LoginView.loginError();
         }
+    }
+    public static void logoutUser(){
+        User user = StorageService.getInstance().user();
+        StorageService.getInstance().setCurrentUser(null);
+        LoginController loginController = new LoginController(user, new LoginView(user));
+        loginController.view.logoutSuccess();
     }
 }

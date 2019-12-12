@@ -18,5 +18,35 @@
       "id":3,
       "username":"admin"
     }
+  ],
+  "films": [
+    {
+      "id": 1,
+      "title": "Thor: Ragnarök",
+      "length": 131,
+      "form": "2D",
+      "time": "2017-11-02 08:20",
+      "room": 1,
+      "sold": 0
+    }
+  ],
+  "rooms": [
+    {
+      "id": 1,
+      "rows": 10,
+      "cols": 10
+    }
+  ],
+  "tickets": [
+    {
+      "type": "normal",
+      "2D": 100,
+      "3D": 200
+    },
+    {
+      "type": "student",
+      "2D": 60,
+      "3D": 120
+    }
   ]
 }

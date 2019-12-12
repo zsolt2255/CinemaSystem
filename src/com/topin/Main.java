@@ -9,7 +9,7 @@ public class Main {
         do {
             if (StorageService.getInstance().user() == null) {
                 MenuController.create(new MainMenu()).execute();
-            }
+        }
         } while (true);
     }
 }

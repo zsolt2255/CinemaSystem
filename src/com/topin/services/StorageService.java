@@ -1,10 +1,15 @@
 package com.topin.services;
 
+import com.topin.models.Costumer;
 import com.topin.models.User;
 
 public class StorageService {
     private static StorageService ourInstance = new StorageService();
     private User currentUser;
+    private Costumer currentCostumer;
+
+    public Costumer costumer() { return currentCostumer; }
+    public void setCurrentCostumer(Costumer currentCostumer) { this.currentCostumer = currentCostumer; }
 
     /**
      * @return StorageService

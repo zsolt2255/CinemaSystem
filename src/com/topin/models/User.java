@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class User extends BaseModel {
-
     private String username;
     private String password;
     private String role;
@@ -85,8 +84,8 @@ public class User extends BaseModel {
      * @return Map
      */
     @Override
-    protected Map<String, String> insert(int id) {
-        return Map.of("id", String.valueOf(id), "username", username, "password", password, "role", role);
+    protected Map insert(int id) {
+        return Map.of("id", id, "username", username, "password", password, "role", role,"creditCards",new JSONArray());
     }
 
 

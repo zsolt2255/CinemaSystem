@@ -49,6 +49,17 @@ public class MenuHelper {
         return readLine();
     }
 
+    public int readLine(String out, int type)
+    {
+        System.out.print(out);
+
+        try {
+            return Integer.parseInt(readLine());
+        } catch(Exception exception) {
+            return readLine(out, 1);
+        }
+    }
+
     /**
      * @return int
      */

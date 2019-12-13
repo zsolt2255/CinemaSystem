@@ -142,7 +142,7 @@ abstract public class BaseModel {
      * @param database
      * @return JSONObject
      */
-    protected JSONObject insertData(Map<String, String> datas, DbJsonArray database) {
+    protected JSONObject insertData(Map datas, DbJsonArray database) {
         JSONObject jsonObject = new JSONObject();
         datas.forEach(jsonObject::put);
         database.get().add(datas);
@@ -155,7 +155,7 @@ abstract public class BaseModel {
      * @param database
      * @return JSONObject
      */
-    protected JSONObject insertData(Map<String, String> datas, JSONArray database) {
+    protected JSONObject insertData(Map datas, JSONArray database) {
         JSONObject jsonObject = new JSONObject();
         datas.forEach(jsonObject::put);
         database.add(datas);
@@ -168,7 +168,7 @@ abstract public class BaseModel {
      * @param datas
      * @return JSONObject
      */
-    protected JSONObject insertData(String table, Map<String, String> datas) {
+    protected JSONObject insertData(String table, Map datas) {
         return insertData(table, datas, DatabaseConnection.getInstance().getDatabase());
     }
 
@@ -178,7 +178,7 @@ abstract public class BaseModel {
      * @param database
      * @return JSONObject
      */
-    protected JSONObject insertData(String table, Map<String, String> datas, JSONObject database) {
+    protected JSONObject insertData(String table, Map datas, JSONObject database) {
 
         //if(table.split(".").length)
         if(database.get(table) instanceof JSONArray) {
@@ -263,6 +263,10 @@ abstract public class BaseModel {
         return ++maxid;
     }
 
+    protected int getLastID(JSONArray jsonArray) {
+        return 1;
+    }
+
     /**
      * @return int
      */
@@ -275,11 +279,26 @@ abstract public class BaseModel {
      * @param table
      * @param id
      */
-    public void delete(String table, int id) {
+    public void delete(String table, int id)
+    {
         DatabaseConnection.getInstance().getDatabase().replace(
                 table,
                 DatabaseConnection.getInstance().getTable(table),
                 JsonHelper.removeByKey("id", id, DatabaseConnection.getInstance().getTable(table))
+        );
+
+        DatabaseConnection.getInstance().saveDatabase();
+    }
+
+    /**
+     * @param table
+     * @param cardNumber
+     */
+    public void delete(String table, Long cardNumber) {
+        DatabaseConnection.getInstance().getDatabase().replace(
+                table,
+                DatabaseConnection.getInstance().getTable(table),
+                JsonHelper.removeByKey("cardNumber", Integer.valueOf(String.valueOf(cardNumber)), DatabaseConnection.getInstance().getTable(table))
         );
 
         DatabaseConnection.getInstance().saveDatabase();

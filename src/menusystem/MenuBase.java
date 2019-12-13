@@ -1,5 +1,7 @@
 package menusystem;
 
+import com.topin.helpers.ConsoleColors;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +34,7 @@ abstract public class MenuBase {
             result = menuExecute.execute();
 
             if(options.get(result-1) == null) {
-                System.out.println("Hibás bevitel! Próbálja újra...");
+                System.out.println(ConsoleColors.RED+"Hibás bevitel! Próbálja újra..."+ConsoleColors.RESET);
             }
         } while (options.get(result-1) == null);
 

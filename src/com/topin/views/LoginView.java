@@ -1,5 +1,6 @@
 package com.topin.views;
 
+import com.topin.helpers.ConsoleColors;
 import com.topin.helpers.Pair;
 import com.topin.models.User;
 import menusystem.MenuHelper;
@@ -30,7 +31,7 @@ public class LoginView {
      * @return void
      */
     public static void loginError() {
-        System.out.println("Hibás bejelentkezési adatok!");
+        System.out.println(ConsoleColors.RED+"Hibás bejelentkezési adatok!"+ConsoleColors.RESET);
     }
 
     /**

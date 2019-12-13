@@ -2,51 +2,48 @@ package menusystem.menus;
 
 import com.topin.controllers.CostumerController;
 import com.topin.controllers.LoginController;
-import com.topin.controllers.UserController;
 import menusystem.MenuBase;
+import menusystem.MenuController;
 
 import java.text.ParseException;
 
-public class MainMenu extends MenuBase {
+public class UserMainMenu extends MenuBase {
 
-    /**
-     * @param option
-     * @return void
-     */
     @Override
     protected void handle(Integer option) {
         switch (option)
         {
             case 1:
-                LoginController loginController = LoginController.loginUser();
+                MenuController.create(new CostumerCardEditorMenu()).execute();
                 break;
             case 2:
+                MenuController.create(new CostumerPurchaseMenu()).execute();
+                break;
+            case 3:
                 try {
                     CostumerController.search();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 break;
-            case 3:
-                UserController.createUser();
-                break;
             case 4:
+                LoginController.logout();
+                break;
+            case 5:
                 System.exit(0);
                 break;
-
         }
     }
 
-    /**
-     * @return String[]
-     */
     @Override
     public String[] getOptions() {
         return new String[]{
-                "Bejelentkezés",
+                "Bankkártya kezelés",
+                "Jegy vásárlás",
                 "Keresés",
-                "Regisztráció",
-                "Kilépés"};
+                "Kijelentkezés",
+                "Kilépés",
+        };
     }
 
 

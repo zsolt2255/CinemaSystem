@@ -1,5 +1,7 @@
 package menusystem;
 
+import com.topin.helpers.ConsoleColors;
+
 import java.util.Map;
 import java.util.Scanner;
 
@@ -60,7 +62,7 @@ public class MenuExecute {
         try {
             result = input.nextInt();
         } catch (Exception e) {
-            throw new Exception("ERROR: NaN");
+            throw new Exception(ConsoleColors.RED+"ERROR: NaN"+ConsoleColors.RESET);
         }
 
         return result;

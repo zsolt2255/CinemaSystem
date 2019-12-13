@@ -16,7 +16,7 @@ public class JsonHelper {
      * @return JSONArray
      */
     public static JSONArray removeByKey(String key, int value, JSONArray from) {
-        return removeByKey(key, String.valueOf(value), from);
+        return removeKey(key, value, from);
     }
 
     /**
@@ -30,6 +30,19 @@ public class JsonHelper {
 
         for (Object jsonObject: from) {
             if((DbJsonObject.create(jsonObject)).getString(key).equals(value)) {
+                return remove(i, from);
+            }
+            i++;
+        }
+
+        return from;
+    }
+
+    public static JSONArray removeKey(String key, Integer value, JSONArray from) {
+        int i=0;
+
+        for (Object jsonObject: from) {
+            if((DbJsonObject.create(jsonObject)).getInt(key) == value) {
                 return remove(i, from);
             }
             i++;
